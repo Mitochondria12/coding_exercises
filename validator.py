@@ -22,10 +22,7 @@ def reward_miners(reference, miner_results):
     # Add the code to reward miners here
         
 
-def execute_validator_step():                
-    # Load the dataset        
-    data = load_dataset()    
-    
+def execute_validator_step(...):
     # ...
     # Query miners for data
     # ...
@@ -38,8 +35,12 @@ def execute_validator_step():
 
 if __name__ == '__main__':
     print('Starting validator execution...')
+    
+    # Load the dataset        
+    data = load_dataset()    
+        
     while True:        
         # Execute a validator step every 2 seconds
-        execute_validator_step()
+        execute_validator_step(...)
         time.sleep(2)
         

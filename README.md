@@ -8,14 +8,14 @@ In this coding exercise, you will design and implement a decentralized calculato
 
 ![Exercise diagram](./exercise-diagram.png)
 
-This repo is a toy representation exercise of a bittensor subnet. This goal is to building a decentralized calculator with validators and miners interacting with each other using an incentive mechanism. The flow follows main 4 steps:
-1. Starting from `validator.py` main entrypoint, the `execute_validator_step()` initiates the data acquision process with `load_dataset()`.
-The dataset contains 3 columns:
+This repo is a toy representation exercise of a bittensor subnet. This goal is to build a decentralized calculator with validators and miners interacting with each other using an incentive mechanism. The flow follows main 4 steps:
+1. Starting from the `validator.py` main entrypoint, the data acquision process starts with `load_dataset()`.
+The [dataset](https://huggingface.co/datasets/synapse-alpha/coding_exercises) contains 3 columns:
 - n_1: first number of the operation
 - n_2: second number of the operation
 - operand: string represeting the operand.
 
-2. With loaded data, you can generate the reference by creating the reference answer for the operation `n_1 operand n_2`. To better illustrate, let's consider the row values `5 (n_1), '+' (operand), 5 (n_2)`. The reference result should be 10 (5 + 5). 
+2. With the loaded data, you can generate the reference by creating the reference answer for the operation `n_1 operand n_2`. To better illustrate, let's consider the row values `5 (n_1), '+' (operand), 5 (n_2)`. The reference result should be 10 (5 + 5). 
 
 3. Miners contribute to the problem solving by providing an answer. The best answers are directly aligned with the reference answer, so miners try their best to simulate the reference answer.
 
@@ -30,7 +30,7 @@ reward = 1 if miner_completion == reference else 0
 
 # Useful links:
 https://docs.bittensor.com/learn/bittensor-building-blocks
-
+https://huggingface.co/datasets/synapse-alpha/coding_exercises (DATASET FOR CODING EXERCISE)
 
 ## **Objective:**
 
