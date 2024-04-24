@@ -60,7 +60,7 @@ Build a decentralized system that utilizes a dataset to perform calculations dis
 
 ## **Extra Points Opportunities:**
 - Implement data acquisition in batches in `data.py`.
-- Use an advanced incentive mechanism in `validator.py` that rewards miners not just for correct answers but for closeness to the reference value.
+- Use a continuous function to model the incentive mechanism in `validator.py` that rewards miners not just for correct answers but for closeness to the reference value.
 - Employ asynchronous programming in the reference generation and mining querying processes in `validator.py`.
 - Handle batch operations in both reference generation and mining querying in `validator.py`.
 - Present multiple solution approaches, especially in how operations are interpreted and executed in `miner.py`.
