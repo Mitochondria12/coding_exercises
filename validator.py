@@ -27,8 +27,8 @@ def execute_validator_step(...):
     # Query miners for data
     # ...
     
-    miner_results = query_miners(...)
     reference = generate_reference(...)
+    miner_results = query_miners(...)
 
     results = reward_miners(reference, miner_results)
     print('Results:', results)
