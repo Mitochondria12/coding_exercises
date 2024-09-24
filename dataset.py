@@ -1,10 +1,17 @@
 # dataset.py
+from datasets import load_dataset
+
 def load_dataset():
-    print('Retrieving data from database...')    
-    # Simulate loading the dataset (replace with actual loading code as needed)
+    print('Retrieving data from Hugging Face...')
+
+    # Load the dataset from Hugging Face (this loads the 'train' split by default)
+    dataset = load_dataset('synapse-alpha/coding_exercises', split='train')
+
+    # Convert the dataset to a format that your application expects (a dictionary with 'n_1', 'n_2', 'operand')
     data = {
-        'n_1': [966924, 866561, 280257, 385707, 81051, 475602, 715298, 145123, 771965, 807690],
-        'n_2': [998623, 859098, 763465, 748520, 875339, 965283, 579022, 442936, 78943, 563481],
-        'operand': ['*', '-', '/', '-', '+', '*', '/', '+', '-', '/']
+        'n_1': [item['n_1'] for item in dataset],
+        'n_2': [item['n_2'] for item in dataset],
+        'operand': [item['operand'] for item in dataset]
     }
+
     return data
