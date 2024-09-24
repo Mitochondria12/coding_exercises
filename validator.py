@@ -1,7 +1,7 @@
 import time
 from dataset import load_dataset
 from miner import ExampleMiner, MathSynapse
-
+import math
 
 def query_miners(...):
     print('💬 Querying miners for data...')
@@ -36,9 +36,37 @@ def generate_reference(data, batch_size=1000):
             except Exception as e:
                 print(f"Error processing {n_1} {operation} {n_2}: {e}")
 
-def reward_miners(reference, miner_results):
+def reward_miners(reference, miner_results, max_reward=10):
     print('💰 Rewarding miners...')
-    # Add the code to reward miners here
+
+    batch_total_reward = 0
+    tolerance = 0.01  # Define a tolerance level to avoid extremely small rewards
+
+    # Function to compute continuous reward based on closeness
+    def compute_reward(reference, miner_result, max_reward):
+        # Compute the absolute error
+        error = abs(reference - miner_result)
+        
+        # If the miner's result is exactly correct, give the max reward
+        if error == 0:
+            return max_reward
+        
+        # Otherwise, compute a reward inversely proportional to the error.
+        # Using an exponential decay model for rewarding
+        decay_rate = 5  # Adjust the decay rate to control the sharpness of the reward drop-off
+        reward = max_reward * math.exp(-decay_rate * error)
+        
+        # Ensure we don't reward values close to zero
+        return reward if reward > tolerance else 0
+
+    # Process each miner result and compute reward
+    for ref, miner_result in zip(reference, miner_results):
+        reward = compute_reward(ref, miner_result, max_reward)
+        batch_total_reward += reward
+        print(f"Reference: {ref}, Miner Result: {miner_result}, Reward: {reward}")
+
+    print(f'Total batch reward: {batch_total_reward}')
+    return batch_total_reward
         
 
 def execute_validator_step(...):
