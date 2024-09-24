@@ -63,9 +63,13 @@ if __name__ == '__main__':
     print('Starting validator execution...')
     
     # Load the dataset
-    data = load_dataset()
+    dataset_iterator = load_dataset()
+
+    # Print the first few items from the dataset iterator
+    for i, data in enumerate(dataset_iterator):
+        batch_data = {'n_1': [item['n_1'] for item in data],'n_2': [item['n_2'] for item in data],'operand': [item['operand'] for item in data]}
     
     # Run the validator step every 2 seconds
     while True:        
-        execute_validator_step(data)
+        execute_validator_step(batch_data)
         time.sleep(2)
